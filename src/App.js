@@ -53,12 +53,18 @@ class App extends Component {
       <div className="App">
         <h1>Meu projeto</h1>
         {this.state.comentarios.map((comentario, indice) => (
-          <Comentario key={indice} nome={comentario.nome} email={comentario.email} data={comentario.data} onRemove = {this.removerComentario.bind(this, comentario)}>
+          <Comentario 
+            key={indice} 
+            nome={comentario.nome} 
+            email={comentario.email} 
+            data={comentario.data} 
+            onRemove = {this.removerComentario.bind(this, comentario)}>
             {comentario.mensagem}
           </Comentario>
         ))}
 
-        <form method="post" onSubmit={this.adicionarcomentario}>
+          {/*sugestão para aprendizado... colocar esse form como um componente*/}
+        <form method="post" onSubmit={this.adicionarcomentario} className="Novo-Comentario">
           <h2>Adiconar comentario</h2>
           <div>
             <input 
@@ -66,13 +72,25 @@ class App extends Component {
               name="nome" 
               value={this.state.novoComentario.nome} 
               onChange = {this.digitacao}
-              placeholder="Digite seu nome" />
+              placeholder="Digite seu nome"
+              required />
           </div>
           <div>
-            <input type="email" name="email" value={this.state.novoComentario.email} onChange={this.digitacao} placeholder="Digite seu email" />
+            <input 
+              type="email" 
+              name="email" 
+              value={this.state.novoComentario.email} 
+              onChange={this.digitacao} 
+              placeholder="Digite seu email"
+              required/>
           </div>
           <div>
-            <textarea name="mensagem" rows="4" onChange={this.digitacao} value={this.state.novoComentario.mensagem} />
+            <textarea 
+              name="mensagem" 
+              rows="4" 
+              onChange={this.digitacao} 
+              value={this.state.novoComentario.mensagem}
+              required/>
           </div>
           <button type="submit">Adicionar comentário</button>
         </form>
